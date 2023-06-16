@@ -1,0 +1,57 @@
+﻿@model IEnumerable<appWeb08.Models.Cliente>
+
+@{
+    ViewBag.Title = "Listado";
+}
+
+<h2>Listado</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idcliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombrecia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idpais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fono)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idcliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombrecia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idpais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fono)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
