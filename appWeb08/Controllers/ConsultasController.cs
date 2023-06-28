@@ -7,17 +7,27 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using appWeb08.Models;
+using System.Reflection;
 
 namespace appWeb08.Controllers
 {
     public class ConsultasController : Controller
     {
-        string cadena = @"server=ab-win-host; database=Negocios2022; integrated security=true"
+        string cadena = @"server=ab-win-host; database=Negocios2022; integrated security=true";
 
         IEnumerable<Cliente> clientes()
         {
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            builder.DataSource = "eivicorp.database.windows.net";
+            builder.UserID = "colbapnauj";
+            builder.Password = "_";
+            builder.InitialCatalog = "Negocios";
+
+            
+
             List<Cliente> temporal = new List<Cliente>();
 
+            // SqlConnection cn = new SqlConnection(builder.ConnectionString);
             SqlConnection cn = new SqlConnection(cadena);
             cn.Open();
 
@@ -28,7 +38,7 @@ namespace appWeb08.Controllers
                 temporal.Add(new Cliente()
                 {
 
-                    idcliente = dr.GetString(0),
+                    idcliente = dr.GetInt32(0).ToString(),
                     nombrecia = dr.GetString(1),
                     direccion = dr.GetString(2),
                     idpais = dr.GetString(3),
